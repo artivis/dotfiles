@@ -1,0 +1,38 @@
+[user]
+	name = artivis
+	email = TO_FILL 
+
+[core]
+
+[alias]
+    gl  = log -10 --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
+    gll = log     --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
+
+    ci = commit
+
+    co = checkout
+    br = branch
+
+    stat = status
+    st = status
+
+    unstage = reset HEAD
+    uns = reset HEAD
+
+    cim = commit -m
+    cia = commit --amend
+
+    rib = rebase -i
+
+    remote = remote -v
+
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+
+[credential]
+	helper = cache --timeout=300
+[push]
+	default = current
