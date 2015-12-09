@@ -24,8 +24,6 @@ SOURCE_TERMINATOR=$SOURCE_BASE/terminator/config
 
 SOURCE_FILES=($SOURCE_VIM $SOURCE_GIT_CONFIG $SOURCE_BASH_ALIASES $SOURCE_TERMINATOR)
 
-declare -A FILES_PAIRS
-
 for ((i=0;i<${#SOURCE_FILES[@]};++i)); do
 
 	source=${SOURCE_FILES[i]}
@@ -43,11 +41,15 @@ for ((i=0;i<${#SOURCE_FILES[@]};++i)); do
 	  if [ "${REP,,}" == "y" ] | [ "${REP,,}" == "" ]; then
 		echo -e "\nReplacing $target with $source :"
 		echo -e "\t- Moving $target to $target.old"
+		mv $target $target.old
+		echo -e "\t- Copying $source to $target"
+		cp $source $target
 	  fi
-
+	  
+	else
+		echo -e "\t- Copying $source to $target"
+		cp $source $target
 	fi
 done
 
-# Copy pose target folder
-#cp `rospack find pal_navigation_sm`/config/pose.yaml $TARGET
 echo "Done."
