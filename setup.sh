@@ -89,4 +89,27 @@ for ((i=0;i<${#SOURCE_FILES[@]};++i)); do
 
 done
 
+while [ "${REP,,}" != "y" ] && [ "${REP,,}" != "n" ] && [ "${REP,,}" != "" ]; do
+
+	echo -e "\nSource .bash_ros_aliases [Y, n, q] ?"
+
+	read REP
+
+	if [ "${REP,,}" == "q" ]; then
+		exit 0
+	elif [ "${REP,,}" == "n" ]; then
+		break
+	elif [ "${REP,,}" == "y" ] | [ "${REP,,}" == "" ]; then
+		echo -e "\nif [ -f ~/.bash_ros_aliases ]; then\n    . ~/.bash_ros_aliases\nfi" >> $HOME/.bashrc
+		continue
+	else
+		echo "---------------------- Lol wrong ! ---------------------"
+		echo "[y] - replace. Replace whatever is there blindly."
+		echo "[n] - safe. Move old config and copy new one (Default)."
+		echo "[q] - quit."
+		echo "--------------------------------------------------------"
+	fi
+
+done
+
 echo "Done."
