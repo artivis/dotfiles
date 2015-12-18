@@ -1,0 +1,41 @@
+# ~/.bash
+
+function rosv()
+{
+  echo $ROS_DISTRO
+}
+
+alias gn='rosnode list | grep'
+alias gt='rostopic list | grep'
+alias gs='rosservice list | grep'
+alias gp='rosparam list | grep'
+
+alias hz='rostopic hz'
+
+alias catkinmake='catkin_make -j8'
+alias catkinm='catkin_make -j8'
+
+function rviz()
+{
+  if [[ $# < 1 ]]
+  then
+    rosrun rviz rviz
+  else
+    rosrun rviz rviz -d `rospack find ${1}_2dnav`/config/rviz/navigation.rviz
+  fi
+}
+
+function gazebo()
+{
+  if [[ $# < 1 ]]
+  then
+    echo "usage: gazebo <robot_name>"
+  elif [[ $# < 3 ]]
+  then
+    roslaunch ${1}_2dnav_gazebo ${1}_navigation.launch
+  fi
+}
+
+alias tf_tree='rosrun rqt_tf_tree rqt_tf_tree'
+alias rqt_reconfigure='rosrun rqt_reconfigure rqt_reconfigure'
+alias rqt_reconf='rosrun rqt_reconfigure rqt_reconfigure'
