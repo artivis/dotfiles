@@ -8,9 +8,16 @@ TARGET_GIT_CONFIG=$HOME/.gitconfig
 
 TARGET_BASH_ALIASES=$HOME/.bash_aliases
 
+TARGET_BASH_ROS_ALIASES=$HOME/.bash_ros_aliases
+
 TARGET_TERMINATOR=$HOME/.config/terminator/config
 
-TARGET_FILES=($TARGET_VIM $TARGET_GIT_CONFIG $TARGET_BASH_ALIASES $TARGET_TERMINATOR)
+TARGET_FILES=( $TARGET_VIM
+			   $TARGET_GIT_CONFIG
+			   $TARGET_BASH_ALIASES
+			   $TARGET_BASH_ROS_ALIASES
+			   $TARGET_TERMINATOR )
+
 #TARGET_FILES=($HOME/toto)
 
 SOURCE_BASE=$(pwd)
@@ -21,9 +28,16 @@ SOURCE_GIT_CONFIG=$SOURCE_BASE/.gitconfig
 
 SOURCE_BASH_ALIASES=$SOURCE_BASE/.bash_aliases
 
+SOURCE_BASH_ROS_ALIASES=$SOURCE_BASE/.bash_ros_aliases
+
 SOURCE_TERMINATOR=$SOURCE_BASE/terminator/config
 
-SOURCE_FILES=($SOURCE_VIM $SOURCE_GIT_CONFIG $SOURCE_BASH_ALIASES $SOURCE_TERMINATOR)
+SOURCE_FILES=( $SOURCE_VIM
+			   $SOURCE_GIT_CONFIG
+			   $SOURCE_BASH_ALIASES
+			   $SOURCE_BASH_ROS_ALIASES
+			   $SOURCE_TERMINATOR)
+
 #SOURCE_FILES=($SOURCE_BASE/toto)
 
 for ((i=0;i<${#SOURCE_FILES[@]};++i)); do
@@ -35,9 +49,9 @@ for ((i=0;i<${#SOURCE_FILES[@]};++i)); do
 
 	if [ -f "$target" ]; then
 
-	  while [ "${REP,,}" != "r" ] && [ "${REP,,}" != "sr" ] && [ "${REP,,}" != "" ]; do
+	  while [ "${REP,,}" != "r" ] && [ "${REP,,}" != "s" ] && [ "${REP,,}" != "" ]; do
 
-		echo -e "\nFile $target exists, what to do [r, s, q] ?"
+		echo -e "\nFile $target exists, what to do [r, S, q] ?"
 
 		read REP
 
