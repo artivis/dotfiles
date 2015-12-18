@@ -90,5 +90,6 @@ function top_process()
   fi
 }
 
+alias chars='wc -m'
+alias words='wc -w'
 alias lines='wc -l'
-
