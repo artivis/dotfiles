@@ -19,6 +19,8 @@ lsgrep() {
     ls -l | grep -i "`echo $@`"
 }
 
+alias igrep='grep -i'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -55,3 +57,13 @@ function top_process()
 alias chars='wc -m'
 alias words='wc -w'
 alias lines='wc -l'
+
+counts()
+{
+  if [[ $# < 1 ]]
+  then
+    echo "usage: counts myfile.txt"
+  else
+    wc $1 | awk '{print "lines " $1 " words " $2 " characters " $3}'
+  fi
+}
