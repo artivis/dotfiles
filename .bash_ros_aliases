@@ -5,6 +5,17 @@ function rosv()
   echo $ROS_DISTRO
 }
 
+# Show or change $ROS_MASTER_URI localhost port
+uri_local()
+{
+  if [[ $# < 1 ]]
+  then
+    echo $ROS_MASTER_URI
+  else
+    export ROS_MASTER_URI=http://localhost:$1
+  fi
+}
+
 alias gn='rosnode list | grep'
 alias gt='rostopic list | grep'
 alias gs='rosservice list | grep'
@@ -15,8 +26,12 @@ alias hz='rostopic hz'
 alias catkinmake='catkin_make -j8'
 alias catkinm='catkin_make -j8'
 
-function rviz()
-{
+alias catkinbuild='catkin build'
+alias catkinb='catkin build'
+
+alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
+
+function rviz(){
   if [[ $# < 1 ]]
   then
     rosrun rviz rviz
@@ -24,6 +39,18 @@ function rviz()
     rosrun rviz rviz -d `rospack find ${1}_2dnav`/config/rviz/navigation.rviz
   fi
 }
+
+function ros_republish()
+{
+  if [[ $# < 2 ]]
+  then
+    echo "usage: ros_republish topic_in topic_out"
+  else
+    rosrun topic_tools relay ${1} ${2}
+  fi
+}
+
+alias republish=ros_republish
 
 function gazebo()
 {
