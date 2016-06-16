@@ -61,16 +61,16 @@ for ((i=0;i<${#SOURCE_FILES[@]};++i)); do
 			echo -e "\nReplacing $target with $source :"
 			echo -e "\t- Moving $target to $target.old"
 			mv $target $target.old
-			echo -e "\t- Copying $source to $target"
-			cp $source $target
+			echo -e "\t- Linking $source to $target"
+			ln -s $source $target
 			continue
 		elif [ "${REP,,}" == "s" ] | [ "${REP,,}" == "" ]; then
 			echo -e "\nMoving $target to $target.old:"
 			echo -e "\nReplacing $target with $source :"
 			echo -e "\t- Moving $target to $target.old"
 			mv $target $target.old
-			echo -e "\t- Copying $source to $target"
-			cp $source $target
+			echo -e "\t- Linking $source to $target"
+			ln -s  $source $target
 			continue
 		else
 			echo "---------------------- Lol wrong ! ---------------------"
@@ -83,8 +83,8 @@ for ((i=0;i<${#SOURCE_FILES[@]};++i)); do
 	  done
 
 	else
-		echo -e "\t- Copying $source to $target"
-		cp $source $target
+		echo -e "\t- Linking $source to $target"
+		ln -s $source $target
 	fi
 
 done
