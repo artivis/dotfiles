@@ -10,12 +10,14 @@
   paste = <Ctrl>v
 [profiles]
   [[default]]
+    scrollbar_position = hidden
     palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
     background_darkness = 0.94
     background_type = transparent
-    scrollbar_position = hidden
+    background_image = None
     foreground_color = "#cecece"
     background_color = "#2c1a2d"
+    scroll_on_output = False
     scrollback_infinite = True
 [layouts]
   [[default]]
