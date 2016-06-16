@@ -58,6 +58,9 @@ alias chars='wc -m'
 alias words='wc -w'
 alias lines='wc -l'
 
+# Open file with default application (GNOME)
+alias go='xdg-open'
+
 counts()
 {
   if [[ $# < 1 ]]
@@ -67,3 +70,41 @@ counts()
     wc $1 | awk '{print "lines " $1 " words " $2 " characters " $3}'
   fi
 }
+
+extract ()
+{
+   if [ -f $1 ] ; then
+       case $1 in
+           *.tar.bz2)   tar xvjf $1    ;;
+           *.tar.gz)    tar xvzf $1    ;;
+           *.bz2)       bunzip2 $1     ;;
+           *.rar)       unrar x $1     ;;
+           *.gz)        gunzip $1      ;;
+           *.tar)       tar xvf $1     ;;
+           *.tbz2)      tar xvjf $1    ;;
+           *.tgz)       tar xvzf $1    ;;
+           *.zip)       unzip $1       ;;
+           *.Z)         uncompress $1  ;;
+           *.7z)        7z x $1        ;;
+           *)           echo "don't know how to extract '$1'..." ;;
+       esac
+   else
+       echo "'$1' is not a valid file!"
+   fi
+}
+
+# This will probably need some update
+alias clocpp='cloc --exclude-lang=HTML,CSS,Javascript,YAML,XML,Bourne Shell'
+
+# command prompt
+TITLEBAR="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
+COMMAND_PROMPT='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\a \[\033[00m\]${ROS_MASTER_URI}'$GIT_PS1'\n\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+PS1=$COMMAND_PROMPT
+case "$TERM" in
+    xterm*|rxvt*)
+        PS1="$TITLEBAR$PS1"
+        ;;
+    *)
+        ;;
+esac
