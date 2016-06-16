@@ -6,7 +6,7 @@ function rosv()
 }
 
 # Show or change $ROS_MASTER_URI localhost port
-uri_local()
+function uri_local()
 {
   if [[ $# < 1 ]]
   then
@@ -14,6 +14,16 @@ uri_local()
   else
     export ROS_MASTER_URI=http://localhost:$1
   fi
+}
+
+function uri()
+{
+    if [[ $# < 1 ]]
+    then
+      echo $ROS_MASTER_URI
+    else
+      export ROS_MASTER_URI=http://$1:11311
+    fi
 }
 
 alias gn='rosnode list | grep'
@@ -30,12 +40,10 @@ alias catkinbuild='catkin build'
 alias catkinb='catkin build'
 alias cb="catkin build"
 alias cbt="cb --this"
+alias cbtest="catkin test"
 
-alias catkin_clean="rm -rf build* devel* install*"
-
-alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
-
-function rviz(){
+function rviz()
+{
   if [[ $# < 1 ]]
   then
     rosrun rviz rviz
@@ -55,6 +63,10 @@ function ros_republish()
 }
 
 alias republish=ros_republish
+
+alias tf_tree='rosrun rqt_tf_tree rqt_tf_tree'
+alias rqt_reconfigure='rosrun rqt_reconfigure rqt_reconfigure'
+alias rqt_reconf='rosrun rqt_reconfigure rqt_reconfigure'
 
 function gazebo()
 {
