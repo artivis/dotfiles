@@ -12,6 +12,7 @@
     cp = cherry-pick
 
     co = checkout
+    cob = checkout -b
     br = branch
     bra = branch -a
 
@@ -23,10 +24,22 @@
 
     cim = commit -m
     cia = commit --amend
+    cian = commit --amend --no-edit
 
     rib = rebase -i
 
     remote = remote -v
+
+    reword = commit -v --amend
+
+    tree     = log --oneline --abbrev-commit --all --graph --decorate --color=always --pretty=greenspaced
+    treefull = log --abbrev-commit --all --graph --decorate --color=always --pretty=medium
+    treee    = log --oneline --abbrev-commit --all --graph --decorate --color
+
+    dif = diff --word-diff
+
+    brdiff = "!f() { git log $1 ^$2; }; f"
+    filelog = "log --follow -p --"
 
 [color]
     branch = auto
@@ -38,3 +51,7 @@
 	helper = cache --timeout=300
 [push]
 	default = current
+[branch]
+	autosetuprebase = always
+[pretty]
+	greenspaced = format: %Cgreen%h%Creset %s%Cred%d%Creset%n
