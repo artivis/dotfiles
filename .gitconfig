@@ -54,6 +54,10 @@
 
     aliases = "!git config -l | grep alias | cut -c 7-"
 
+    deadbranch = git remote prune origin --dry-run
+
+    unstage = reset HEAD --
+
     res1 = reset HEAD^
     res2 = reset HEAD^^
     resh = reset --hard
@@ -81,6 +85,18 @@
     # initial readme commit
     readme = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && echo "" >> README.md && git add README.md && git commit -m 'readme.md commit'; }; f"
 
+    co-recurse = !sh -c 'git checkout $1 && git submodule update --recursive' -
+
+    # Bullshit commit
+    bsc = "!f() { git checkout -b devel_bsc; git add .; git commit -a -m "Bull Shit Commit"; }; f"
+
+    # Bullshit commit & push
+    bsp = "!f() { git checkout -b devel_bsc; git add .; git commit -a -m "Bull Shit Commit"; git push origin devel_bsc; }; f"
+
+    wip = commit -am "WIP"
+
+    #wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
 [color]
     branch = auto
     diff = auto
@@ -106,4 +122,9 @@
 	greenspaced = format: %Cgreen%h%Creset %s%Cred%d%Creset%n
 
 [include]
+
     path = ~/.git-aliases/.gitaliases
+
+[diff]
+
+    noprefix = true
