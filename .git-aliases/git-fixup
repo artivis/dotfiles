@@ -1,0 +1,26 @@
+# ~/.bash
+
+#function fixup(){
+# commit cached changes as fixup to the pattern 
+# matching commit log & call interactive rebase.
+if [[ $# < 1 ]]; then\
+  echo "usage: git commit_fixup 'commit log pattern'";
+  #exit 1
+else
+  matched_commit_log=$(git log --oneline --grep="${1}");
+  if (( $(grep -c . <<<"$matched_commit_log") > 1 )); then
+    # if several messages match the pattern, abort
+    # @todo : add --force-first
+    echo ERROR: multiple commit logs matching the pattern found. 1>&2;
+    exit 1;
+  else
+    # only one log matches the pattern, retrieve the commit hash
+    matched_commit_sha=${matched_commit_log%% *};
+    #echo $matched_commit_sha
+    #echo "fixup! $matched_commit_sha"
+    git commit --fixup=$matched_commit_sha;
+    git rebase $matched_commit_sha^ -i --autosquash;
+    # how to auto :x[enter]
+  fi
+fi
+#}
