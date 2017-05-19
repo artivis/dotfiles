@@ -1,0 +1,5 @@
+export PATH="${HOME}/.git-aliases:${PATH}"
+
+if [ -f ~/.bash_ros_aliases ]; then
+  . ~/.bash_ros_aliases
+fi

@@ -21,7 +21,7 @@ cfgname=".cfg";
 bkpname="backup.cfg";
 gitrepo="git@github.com:$gituser/$gitreponame.git";
 gitrepo_ro="git://github.com/$gituser/$gitreponame.git";
-ignored="install.py|install.pyc|install.sh|.git$|.gitmodule|.gitignore|README|bin|setup.sh|terminator";
+ignored="install.py|install.pyc|install.sh|.git$|.gitmodule|.gitignore|README|bin|setup.sh|terminator|.vimrc";
 
 #exit 1
 
@@ -180,6 +180,6 @@ echo "|* linking assets in $home"
 link_assets
 
 echo "Now you probably want to source :"
-echo "echo 'if [ -f ~/.bash_ros_aliases ]; then
-  . ~/.bash_ros_aliases
+echo "echo 'if [ -f ~/.mysources ]; then
+  . ~/.mysources
 fi' >> .bashrc"
