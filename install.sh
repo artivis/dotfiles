@@ -12,11 +12,18 @@ if [ $(whoami) == "root" ];
   else
     home=$HOME;
 fi
+
+gituser=artivis
+#gitreponame=cfg
+gitreponame=backup_conf
+
 cfgname=".cfg";
 bkpname="backup.cfg";
-gitrepo="git@github.com:durdn/cfg.git";
-gitrepo_ro="git://github.com/durdn/cfg.git";
-ignored="install.py|install.pyc|install.sh|.git$|.gitmodule|.gitignore|README|bin";
+gitrepo="git@github.com:$gituser/$gitreponame.git";
+gitrepo_ro="git://github.com/$gituser/$gitreponame.git";
+ignored="install.py|install.pyc|install.sh|.git$|.gitmodule|.gitignore|README|bin|setup.sh";
+
+#exit 1
 
 #----debug setup----
 #home=$1
@@ -55,7 +62,7 @@ function link_assets {
   do
     if [ ! -e $home/$asset ];
       then
-        #asset does not exist, can just copy it
+        #asset does not exist, can just link it
         echo "N [new] $home/$asset";
         if [ $debug == false ];
           then ln -s $cfg_folder/$asset $home/$asset;
@@ -63,22 +70,22 @@ function link_assets {
         fi
       else
         #asset is there already
-        if [ -d $home/$asset ];
+        if [ -d $home/$asset ]; # is directory
           then
-            if [ -h $home/$asset ];
+            if [ -h $home/$asset ]; # is symbolic link
               then echo "Id[ignore dir] $home/$asset";
               else
-                echo "Cd[conflict dir] $home/$asset";
+                echo "[conflict dir] $home/$asset";
                 mv $home/$asset $backup_folder/$asset;
                 ln -s $cfg_folder/$asset $home/$asset;
             fi
-          else
+          else # is file
             ha=$(md5prog $home/$asset);
             ca=$(md5prog $cfg_folder/$asset);
             if [ $ha == $ca ];
               #asset is exactly the same
               then
-                if [ -h $home/$asset ];
+                if [ -h $home/$asset ]; # is symbolic link
                   #asset is exactly the same and as link, all good
                   then echo "I [ignore] $home/$asset";
                   else
@@ -110,6 +117,8 @@ function link_assets {
   done
 }
 
+echo "|* git user is" $gituser
+echo "|* git repo name is" $gitreponame
 echo "|* cfg version" $version
 echo "|* debug is" $debug
 echo "|* home is" $home
@@ -127,7 +136,7 @@ if [ ! -e $cfg_folder ];
       then
         #git is not available, juzt unpack the zip file
         echo "|* git not available downloading zip file..."
-        curl -LsO https://github.com/durdn/cfg/archive/master.tar.gz
+        curl -LsO https://github.com/$gituser/$gitreponame/archive/master.tar.gz
         tar zxvf master.tar.gz
         mv cfg-master $home/.cfg
         rm master.tar.gz
@@ -167,4 +176,10 @@ fi
 assets=$(ls -A1 $cfg_folder | egrep -v $ignored | xargs);
 echo "|* tracking assets: [ $assets ] "
 echo "|* linking assets in $home"
+
 link_assets
+
+echo "Now you probably want to source :"
+echo "echo 'if [ -f ~/.bash_ros_aliases ]; then
+  . ~/.bash_ros_aliases
+fi' >> .bashrc"
