@@ -1,5 +1,6 @@
 [user]
-	name = TO_FILL
+
+	name  = TO_FILL
 	email = TO_FILL 
 
 [core]
@@ -10,100 +11,8 @@
 
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
-[alias]
-    gl  = log -10 --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
-    gll = log     --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
-
-    ci = commit
-    cp = cherry-pick
-
-    cl = clone
-
-    co = checkout
-    cob = checkout -b
-    br = branch
-    bra = branch -a
-
-    stat = status
-    st = status
-    sst = status -sb
-
-    unstage = reset HEAD
-    uns = reset HEAD
-
-    cim = commit -m
-    cia = commit --amend
-    cian = commit --amend --no-edit
-
-    rib = rebase -i
-
-    remote = remote -v
-
-    reword = commit -v --amend
-
-    tree     = log --oneline --abbrev-commit --all --graph --decorate --color=always --pretty=greenspaced
-    treefull = log --abbrev-commit --all --graph --decorate --color=always --pretty=medium
-    treee    = log --oneline --abbrev-commit --all --graph --decorate --color
-
-    dif = diff --word-diff
-
-    brdiff = "!f() { git log $1 ^$2; }; f"
-    filelog = "log --follow -p --"
-
-    scrum = !git log --all --author=$USER --since='8am yesterday' --format=%s
-
-    aliases = "!git config -l | grep alias | cut -c 7-"
-
-    deadbranch = git remote prune origin --dry-run
-
-    unstage = reset HEAD --
-
-    res1 = reset HEAD^
-    res2 = reset HEAD^^
-    resh = reset --hard
-    resh1 = reset HEAD^ --hard
-    resh2 = reset HEAD^^ --hard
-
-    #grep from root folder
-    groot = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
-
-    #assume aliases
-    assume = update-index --assume-unchanged
-    unassume = update-index --no-assume-unchanged
-    #show assumed files
-    assumed = "!git ls-files -v | grep ^h | cut -c 3-"
-    #unassume all the assumed files
-    unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
-    #assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
-
-    # initial empty commit
-    empty = "!git commit -am\"[empty] Initial commit\" --allow-empty"
-
-    # init with empty commit
-    initempty = "!f() { git init && git commit -am\"[empty] Initial commit\" --allow-empty; }; f"
-
-    # initial readme commit
-    readme = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && echo "" >> README.md && git add README.md && git commit -m 'readme.md commit' && cd $A; }; f"
-
-    co-recurse = !sh -c 'git checkout $1 && git submodule update --recursive' -
-
-    # Bullshit commit
-    bsc = "!f() { git checkout -b devel_bsc; git add .; git commit -a -m "Bull Shit Commit"; }; f"
-
-    # Bullshit commit & push
-    bsp = "!f() { git checkout -b devel_bsc; git add .; git commit -a -m "Bull Shit Commit"; git push origin devel_bsc; }; f"
-
-    wip = commit -am "WIP"
-
-    authors = "!git log --pretty=format:%aN | sort | uniq -c | sort -rn"
-
-    root = rev-parse --show-toplevel
-
-    cd-root = "!f() { cd $(git rev-parse --show-toplevel); }; f"
-
-    #wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-
 [color]
+
     branch = auto
     diff = auto
     interactive = auto

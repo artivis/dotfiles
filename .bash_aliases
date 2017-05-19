@@ -9,8 +9,6 @@ alias k='pkill -9'
 alias cl='clear'
 alias q='exit'
 
-alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
-
 llgrep() {
     ll | grep -i "`echo $@`"
 }
@@ -95,6 +93,7 @@ extract () {
 # This will probably need some update
 alias clocpp='cloc --exclude-lang=HTML,CSS,Javascript,YAML,XML,Bourne Shell'
 
+# Check if a yaml file syntax is valid
 alias yamlcheck='python -c "import sys, yaml as y; y.safe_load(open(sys.argv[1]))"'
 
 # command prompt
