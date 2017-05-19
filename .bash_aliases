@@ -115,3 +115,14 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 install(){
   sudo apt-get install $1
 }
+
+function set-git-user()
+{
+  if [[ $# < 3 ]]
+  then
+    echo "usage: set-git-user prenom nom mail"
+  else
+    git config --global user.name "$1 $2"
+    git config --global user.email "$3"
+  fi
+}
