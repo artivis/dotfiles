@@ -21,7 +21,7 @@ cfgname=".cfg";
 bkpname="backup.cfg";
 gitrepo="git@github.com:$gituser/$gitreponame.git";
 gitrepo_ro="git://github.com/$gituser/$gitreponame.git";
-ignored="install.py|install.pyc|install.sh|.git$|.gitmodule|.gitignore|README|bin|setup.sh";
+ignored="install.py|install.pyc|install.sh|.git$|.gitmodule|.gitignore|README|bin|setup.sh|terminator";
 
 #exit 1
 
