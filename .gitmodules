@@ -1,0 +1,3 @@
+[submodule "roscorizing"]
+	path = roscorizing
+	url = https://github.com/artivis/roscorizing.git

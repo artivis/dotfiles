@@ -23,8 +23,6 @@ gitrepo="git@github.com:$gituser/$gitreponame.git";
 gitrepo_ro="git://github.com/$gituser/$gitreponame.git";
 ignored="install.py|install.pyc|install.sh|.git$|.gitmodule|.gitignore|README|bin|setup.sh|terminator|.vimrc";
 
-#exit 1
-
 #----debug setup----
 #home=$1
 #gitrepo=$2;
