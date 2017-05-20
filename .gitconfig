@@ -10,6 +10,8 @@
 
     excludesfile = ~/.gitignore_global
 
+    hooksPath = = ~/.git-config/.git-hooks/
+
     autocrlf = input
 
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -41,7 +43,7 @@
 
 [include]
 
-    path = ~/.git-aliases/.gitaliases
+    path = ~/.git-config/.git-aliases/.gitaliases
 
 [diff]
 
