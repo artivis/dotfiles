@@ -96,19 +96,6 @@ alias clocpp='cloc --exclude-lang=HTML,CSS,Javascript,YAML,XML,Bourne Shell'
 # Check if a yaml file syntax is valid
 alias yamlcheck='python -c "import sys, yaml as y; y.safe_load(open(sys.argv[1]))"'
 
-# command prompt
-TITLEBAR="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
-COMMAND_PROMPT='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\a \[\033[00m\]${ROS_MASTER_URI}'$GIT_PS1'\n\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-PS1=$COMMAND_PROMPT
-case "$TERM" in
-    xterm*|rxvt*)
-        PS1="$TITLEBAR$PS1"
-        ;;
-    *)
-        ;;
-esac
-
 # Add an "alert" alias for long running commands.  Use like so: sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
