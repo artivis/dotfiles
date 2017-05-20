@@ -26,6 +26,19 @@ function uri()
     fi
 }
 
+function rosbag_tf_filter()
+{
+  if [[ $# < 2 ]]
+  then
+      echo "usage : rosbag_tf_filter bag_file.bag tf_frame_to_filter_out"
+  else
+    INPUT=$1
+    FRAME=$2
+    OUTPUT=${INPUT//.bag/_filtered.bag}
+    rosbag filter $INPUT $OUTPUT "topic != '/tf' or m.transforms[0].header.frame_id != '$FRAME'"
+  fi
+}
+
 alias gn='rosnode list | grep'
 alias gt='rostopic list | grep'
 alias gs='rosservice list | grep'
