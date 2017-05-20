@@ -117,4 +117,4 @@ function wsqt()
   fi
 }
 
-alias wsh="source devel/setup.bash"
+alias sws="source devel/setup.bash"
