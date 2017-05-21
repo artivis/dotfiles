@@ -20,8 +20,19 @@ if [ -f /opt/ros/kinetic/setup.bash ]; then
 fi
 
 # command prompt
-TITLEBAR="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
-COMMAND_PROMPT='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\a \[\033[00m\]${ROS_MASTER_URI}'$GIT_PS1'\n\[\033[01;34m\]\w\[\033[00m\]\$ '
+TITLEBAR="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h:\w\a\]"
+
+# Is git repo ?
+if git -C $PWD rev-parse &> /dev/null;then
+  # Is ROS sourced ?
+  #if [ -z "$ROS_MASTER_URI" ];then
+    COMMAND_PROMPT='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\a\[\033[00m\]${ROS_MASTER_URI}'$GIT_PS1'\n\[\033[01;34m\]\w\[\033[00m\]\$ '
+  #else
+  #  COMMAND_PROMPT='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\a\[\033[00m\]'$GIT_PS1'\n\[\033[01;34m\]\w\[\033[00m\]\$ '
+  #fi
+else
+  COMMAND_PROMPT='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\a\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\]\$ '
+fi
 
 PS1=$COMMAND_PROMPT
 case "$TERM" in
