@@ -1,5 +1,7 @@
 [alias]
 
+    # git built-in commands canno't be overwritten
+
     gl  = log -10 --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
     gll = log     --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
 
@@ -19,7 +21,7 @@
     st = status
     sst = status -sb
 
-    unstage = reset HEAD
+    unstage = reset HEAD --
     uns = reset HEAD
 
     cim = commit -m
@@ -28,7 +30,7 @@
 
     rib = rebase -i
 
-    remote = remote -v
+    remotev = remote -v
 
     reword = commit -v --amend
 
@@ -39,15 +41,13 @@
     dif = diff --word-diff
 
     brdiff = "!f() { git log $1 ^$2; }; f"
-    filelog = "log --follow -p --"
+    filelog = log --follow -p --
 
     scrum = !git log --all --author=$USER --since='8am yesterday' --format=%s
 
     aliases = "!git config -l | grep alias | cut -c 7-"
 
     deadbranch = git remote prune origin --dry-run
-
-    unstage = reset HEAD --
 
     res1 = reset HEAD^
     res2 = reset HEAD^^
@@ -71,10 +71,12 @@
     empty = "!git commit -am\"[empty] Initial commit\" --allow-empty"
 
     # init with empty commit
-    initempty = "!f() { git init && git commit -am\"[empty] Initial commit\" --allow-empty; }; f"
+    init-empty = "!f() { git init && git commit -am\"[empty] Initial commit\" --allow-empty; }; f"
 
     # initial readme commit
     readme = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && echo "" >> README.md && git add README.md && git commit -m 'readme.md commit' && cd $A; }; f"
+
+    init-readme = "!f() { git init && echo "" >> README.md && git add README.md && git commit -m 'add readme.md'; }; f"
 
     co-recurse = !sh -c 'git checkout $1 && git submodule update --recursive' -
 
