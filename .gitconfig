@@ -4,13 +4,13 @@
     # git config --global user.email "email@example.com"
 
 	name  = TO_FILL
-	email = TO_FILL 
+	email = TO_FILL
 
 [core]
 
     excludesfile = ~/.gitignore_global
 
-    hooksPath = = ~/.git-config/.git-hooks/
+    hooksPath = ~/.git-config/.git-hooks/
 
     autocrlf = input
 
