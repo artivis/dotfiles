@@ -12,7 +12,11 @@ if [ -f ~/roscorizing/scripts/roscorizing.sh ]; then
 fi
 
 if [ -f ~/.git_ps1 ]; then
-  source ~/.git_ps1
+  . ~/.git_ps1
+fi
+
+if [ -f /opt/ros/kinetic/setup.bash ]; then
+  source /opt/ros/kinetic/setup.bash
 fi
 
 # command prompt
