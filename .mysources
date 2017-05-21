@@ -1,4 +1,7 @@
-export PATH="${HOME}/.git-aliases:${PATH}"
+# Export path to custom git commands
+if [ -f ~/.git-config/.git-aliases ]; then
+  export PATH="${HOME}/.git-config/.git-aliases:${PATH}"
+fi
 
 if [ -f ~/.bash_ros_aliases ]; then
   . ~/.bash_ros_aliases
