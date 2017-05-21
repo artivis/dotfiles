@@ -10,6 +10,7 @@
 
     excludesfile = ~/.gitignore_global
 
+    # git version 2.9+
     hooksPath = ~/.git-config/.git-hooks/
 
     autocrlf = input
