@@ -1,5 +1,11 @@
 #!/bin/bash
 
+function source_ros()
+{
+  # @Todo test for ros distro
+  source /opt/ros/kinetic/setup.bash
+}
+
 function rosv()
 {
   echo $ROS_DISTRO
