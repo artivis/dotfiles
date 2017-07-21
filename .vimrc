@@ -15,6 +15,6 @@ set listchars=tab:>-,trail:☯,extends:>,precedes:<
 
 au BufRead,BufNewFile *.launch set filetype=xml
 
-colorscheme wombat
+colorscheme srcery-drk
 
 imap <C-s> <esc>$:x
