@@ -99,3 +99,7 @@
     commit-anyway = commit --no-verify
 
     ignore-mode = config core.filemode false
+
+    open = "!f(){ REPO_URL=$(git config remote.origin.url); gnome-open ${REPO_URL%%.git};}; f"
+
+    dl-ignore-cpp = !(curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/C%2B%2B.gitignore)
