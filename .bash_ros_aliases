@@ -22,6 +22,11 @@ function uri_local()
   fi
 }
 
+function uriset()
+{
+  uri_local 11311
+}
+
 function uri()
 {
     if [[ $# < 1 ]]
@@ -45,21 +50,25 @@ function rosbag_tf_filter()
   fi
 }
 
-alias gn='rosnode list | grep'
-alias gt='rostopic list | grep'
-alias gs='rosservice list | grep'
-alias gp='rosparam list | grep'
+function ros_plugin_of()
+{
+  if [[ $# < 1 ]]
+  then
+    echo "usage: ros_plugin_of base_package_name"
+  else
+    rospack plugins --attrib=plugin ${1}
+  fi
+}
 
-alias hz='rostopic hz'
-
-alias catkinmake='catkin_make -j8'
-alias catkinm='catkin_make -j8'
-
-alias catkinbuild='catkin build'
-alias catkinb='catkin build'
-alias cb="catkin build"
-alias cbt="cb --this"
-alias cbtest="catkin test"
+function rviz()
+{
+  if [[ $# < 1 ]]
+  then
+    rosrun rviz rviz
+  else
+    rosrun rviz rviz -d ${1}
+  fi
+}
 
 function ros_republish()
 {
@@ -71,9 +80,32 @@ function ros_republish()
   fi
 }
 
-alias republish=ros_republish
+function gazebo()
+{
+  if [[ $# < 1 ]]
+  then
+    echo "usage: gazebo <robot_name>"
+  elif [[ $# < 3 ]]
+  then
+    roslaunch ${1}_2dnav_gazebo ${1}_navigation.launch
+  fi
+}
 
-alias rqt_reconfigure='rosrun rqt_reconfigure rqt_reconfigure'
+function ros_grep_service_type()
+{
+  if [[ $# < 1 ]]
+  then
+    echo "usage: ros_grep_service_type service_type"
+  else
+    rosservice list | xargs -I@ rosservice type @ | grep ${1}
+  fi
+}
+
+function qt_ros()
+{
+  export DEAR_QT_HERE_IS_MY_CURRENT_CMAKE_BUILD_DIR="$(catkin locate --workspace $(pwd) --build -q)"
+  qtcreator
+}
 
 # DiZ helps with Qtcreator's permission bug
 # that doesn't let you use the CMake symlink
@@ -95,5 +127,34 @@ function wsqt()
     cp $cmake_top_level $cmakefile
   fi
 }
+
+alias republish=ros_republish
+alias rqt_reconfigure='rosrun rqt_reconfigure rqt_reconfigure'
+alias sws="source devel/setup.bash"
+
+alias ros_version='echo $ROS_DISTRO'
+alias rosv='ros_version'
+
+alias gn='rosnode list | grep'
+alias gt='rostopic list | grep'
+alias gs='rosservice list | grep'
+alias gp='rosparam list | grep'
+
+alias hz='rostopic hz'
+
+alias catkinmake='catkin_make -j8'
+alias catkinm='catkin_make -j8'
+
+alias catkinbuild='catkin build'
+alias catkinb='catkin build'
+alias cb="catkin build"
+alias cbt="cb --this"
+alias cbtest="catkin test"
+
+alias republish=ros_republish
+
+alias tf_tree='rosrun rqt_tf_tree rqt_tf_tree'
+alias rqt_reconfigure='rosrun rqt_reconfigure rqt_reconfigure'
+alias rqt_reconf='rosrun rqt_reconfigure rqt_reconfigure'
 
 alias sws="source devel/setup.bash"
