@@ -47,7 +47,7 @@
 
     aliases = "!git config -l | grep alias | cut -c 7-"
 
-    deadbranch = git remote prune origin --dry-run
+    deadbranch = remote prune origin --dry-run
 
     res1 = reset HEAD^
     res2 = reset HEAD^^
@@ -103,3 +103,5 @@
     open = "!f(){ REPO_URL=$(git config remote.origin.url); gnome-open ${REPO_URL%%.git};}; f"
 
     dl-ignore-cpp = !(curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/C%2B%2B.gitignore)
+
+    show-stashed = stash show -p stash@{0}
