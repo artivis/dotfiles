@@ -105,3 +105,5 @@
     dl-ignore-cpp = !(curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/C%2B%2B.gitignore)
 
     show-stashed = stash show -p stash@{0}
+
+    ancestor = "!f(){ git log -1 $(git merge-base $1 $2); }; f"
