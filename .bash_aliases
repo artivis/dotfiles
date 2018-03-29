@@ -116,7 +116,8 @@ install(){
   sudo apt-get install $1
 }
 
-alias qt='nohup qtcreator -stylesheet=/home/jeremiederay/.config/qtstyle/darcula.css &'
+alias qt='nohup qtcreator -stylesheet=/home/jeremiederay/.qtcreator/darcula.css >/dev/null 2>&1 &'
+alias qtcreator='nohup qtcreator -stylesheet=/home/jeremiederay/.qtcreator/darcula.css >/dev/null 2>&1 &'
 
 function set-git-user()
 {
