@@ -3,8 +3,11 @@
 # Copies the dot files where needed.
 
 TARGET_VIM=$HOME/.vimrc
+TARGET_VIM_CONFIG=$HOME/.vim
 
 TARGET_GIT_CONFIG=$HOME/.gitconfig
+TARGET_GIT_IGNORE_GLOBAL=$HOME/.gitignore_global
+TARGET_GIT_CONFIG_FOLDER=$HOME/.git-config
 
 TARGET_BASH_ALIASES=$HOME/.bash_aliases
 
@@ -12,19 +15,29 @@ TARGET_BASH_ROS_ALIASES=$HOME/.bash_ros_aliases
 
 TARGET_TERMINATOR=$HOME/.config/terminator/config
 
+TARGET_ROSCORIZING=$HOME/.roscorizing
+
 TARGET_FILES=( $TARGET_VIM
-			   $TARGET_GIT_CONFIG
-			   $TARGET_BASH_ALIASES
-			   $TARGET_BASH_ROS_ALIASES
-			   $TARGET_TERMINATOR )
+							 $TARGET_VIM_CONFIG
+			   			 $TARGET_GIT_CONFIG
+				 		 	 $TARGET_GIT_IGNORE_GLOBAL
+							 $TARGET_GIT_CONFIG_FOLDER
+			   	 		 $TARGET_BASH_ALIASES
+			   	 		 $TARGET_BASH_ROS_ALIASES
+			   	 		 $TARGET_TERMINATOR
+							 $TARGET_ROSCORIZING
+						 )
 
 #TARGET_FILES=($HOME/toto)
 
 SOURCE_BASE=$(pwd)
 
 SOURCE_VIM=$SOURCE_BASE/.vimrc
+SOURCE_VIM_CONFIG=$SOURCE_BASE/.vim
 
 SOURCE_GIT_CONFIG=$SOURCE_BASE/.gitconfig
+SOURCE_GIT_IGNORE_GLOBAL=$SOURCE_BASE/.gitignore_global
+SOURCE_GIT_CONFIG_FOLDER=$SOURCE_BASE/.git-config
 
 SOURCE_BASH_ALIASES=$SOURCE_BASE/.bash_aliases
 
@@ -32,11 +45,18 @@ SOURCE_BASH_ROS_ALIASES=$SOURCE_BASE/.bash_ros_aliases
 
 SOURCE_TERMINATOR=$SOURCE_BASE/terminator/config
 
+SOURCE_ROSCORIZING=$SOURCE_BASE/roscorizing
+
 SOURCE_FILES=( $SOURCE_VIM
-			   $SOURCE_GIT_CONFIG
-			   $SOURCE_BASH_ALIASES
-			   $SOURCE_BASH_ROS_ALIASES
-			   $SOURCE_TERMINATOR)
+							 $SOURCE_VIM_CONFIG
+							 $SOURCE_GIT_CONFIG
+				 		 	 $SOURCE_GIT_IGNORE_GLOBAL
+							 $SOURCE_GIT_CONFIG_FOLDER
+			   	 		 $SOURCE_BASH_ALIASES
+			   	 		 $SOURCE_BASH_ROS_ALIASES
+			   	 		 $SOURCE_TERMINATOR
+							 $SOURCE_ROSCORIZING
+						 )
 
 #SOURCE_FILES=($SOURCE_BASE/toto)
 
@@ -49,9 +69,9 @@ for ((i=0;i<${#SOURCE_FILES[@]};++i)); do
 
 	if [ -f "$target" ]; then
 
-	  while [ "${REP,,}" != "r" ] && [ "${REP,,}" != "s" ] && [ "${REP,,}" != "" ]; do
+	  while [ "${REP,,}" != "r" ] && [ "${REP,,}" != "s" ] && [ "${REP,,}" != "c" ] && [ "${REP,,}" != "" ]; do
 
-		echo -e "\nFile $target exists, what to do [r, S, q] ?"
+		echo -e "\nFile $target exists, what to do [r, S, c, q] ?"
 
 		read REP
 
@@ -63,6 +83,9 @@ for ((i=0;i<${#SOURCE_FILES[@]};++i)); do
 			mv $target $target.old
 			echo -e "\t- Linking $source to $target"
 			ln -s $source $target
+			continue
+		elif [ "${REP,,}" == "c" ]; then
+			echo -e "\nSkipping $target."
 			continue
 		elif [ "${REP,,}" == "s" ] | [ "${REP,,}" == "" ]; then
 			echo -e "\nMoving $target to $target.old:"
@@ -76,6 +99,7 @@ for ((i=0;i<${#SOURCE_FILES[@]};++i)); do
 			echo "---------------------- Lol wrong ! ---------------------"
 			echo "[r] - replace. Replace whatever is there blindly."
 			echo "[s] - safe. Move old config and copy new one (Default)."
+			echo "[c] - continue. Move on to the next file."
 			echo "[q] - quit."
 			echo "--------------------------------------------------------"
 		fi
