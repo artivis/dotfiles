@@ -128,6 +128,16 @@ function wsqt()
   fi
 }
 
+function ros_pkg_version()
+{
+  if [[ $# < 1 ]]
+  then
+    cat package.xml | grep version
+  else
+    cat $(rospack find ${1})/package.xml | grep version
+  fi
+}
+
 alias republish=ros_republish
 alias rqt_reconfigure='rosrun rqt_reconfigure rqt_reconfigure'
 alias sws="source devel/setup.bash"
