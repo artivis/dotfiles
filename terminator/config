@@ -1,30 +1,29 @@
 [global_config]
   title_hide_sizetext = True
 [keybindings]
-  close_window = <Ctrl><Shift>q
-  split_horiz = <Ctrl><Shift>w
   close_term = <Ctrl>q
-  split_vert = <Ctrl><Shift>e
-  new_tab = <Ctrl>t
+  close_window = <Ctrl><Shift>q
   copy = <Ctrl>c
+  new_tab = <Ctrl>t
   paste = <Ctrl>v
-[profiles]
-  [[default]]
-    scrollbar_position = hidden
-    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
-    background_darkness = 0.94
-    background_type = transparent
-    background_image = None
-    foreground_color = "#cecece"
-    background_color = "#2c1a2d"
-    scroll_on_output = False
-    scrollback_infinite = True
+  split_horiz = <Ctrl><Shift>w
+  split_vert = <Ctrl><Shift>e
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
+      type = Window
 [plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.94
+    background_image = None
+    background_type = transparent
+    foreground_color = "#ffffff"
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    scroll_on_output = False
+    scrollback_infinite = True
+    scrollbar_position = hidden
