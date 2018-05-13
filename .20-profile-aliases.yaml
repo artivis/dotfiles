@@ -3,3 +3,6 @@ profile-release: config --profile release -x _release --cmake-args -DCMAKE_BUILD
 extend-sys: config --profile sys --extend /opt/ros/indigo -x _sys
 extend-overlay: config --profile overlay --extend ~/ros/indigo/install -x _overlay
 profile-uftrace: config --profile uftrace -x _uftrace --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-fno-inline -pg
+profile-clang: config --profile clang -x _clang --cmake-args -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang
+profile-clang-debug: config --profile clang-debug -x _clang_debug --cmake-args -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug
+profile-clang-release: config --profile clang-release -x _clang_release --cmake-args -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Release
