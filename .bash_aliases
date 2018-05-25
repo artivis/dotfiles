@@ -129,3 +129,25 @@ function set-git-user()
     git config --global user.email "$3"
   fi
 }
+
+function gochrome()
+{
+  if [[ $# < 1 ]]
+  then
+    echo "usage: gochrome <url>"
+  else
+    nohup google-chrome --args "$1" > /dev/null 2>&1 &
+  fi
+}
+
+alias xkcd='gochrome https://xkcd.com/'
+
+function gogoogle()
+{
+  if [[ $# < 1 ]]
+  then
+    echo "usage: gogoogle <url>"
+  else
+    gochrome http://www.google.com/search?q=$1
+  fi
+}
