@@ -43,10 +43,20 @@ function rosbag_tf_filter()
   then
       echo "usage : rosbag_tf_filter bag_file.bag tf_frame_to_filter_out"
   else
-    INPUT=$1
-    FRAME=$2
-    OUTPUT=${INPUT//.bag/_filtered.bag}
-    rosbag filter $INPUT $OUTPUT "topic != '/tf' or m.transforms[0].header.frame_id != '$FRAME'"
+    for last; do true; done;
+    # Retrieve last arg
+    FRAME=$last
+    # Delete last arg
+    set -- "${@:1:$(($#-1))}"
+    # Iterate args
+    for BAG in "${@}"
+    do
+      INPUT=$BAG # Bag full path
+      BAGNAME=${INPUT##*/} # Strip bag name
+      OUTPUT=${BAGNAME//.bag/_filtered.bag}
+      echo "About to filter frame" $FRAME "from" $INPUT". Saving as :" $OUTPUT
+      rosbag filter $INPUT $OUTPUT "topic != '/tf' or m.transforms[0].header.frame_id != '$FRAME'"
+    done
   fi
 }
 
