@@ -151,3 +151,17 @@ function gogoogle()
     gochrome http://www.google.com/search?q=$1
   fi
 }
+
+function repeat()
+{
+  if [[ $# < 2 ]]
+  then
+     echo "usage: repeat <n> <cmd>"
+  else
+     #run in {1..$1}; do $2; done
+    echo "About to execute '$2' $1 times."
+    for ((i = 1; i <= $1; i++ )); do
+      $2
+    done
+  fi
+}
