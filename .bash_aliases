@@ -165,3 +165,5 @@ function repeat()
     done
   fi
 }
+
+alias EIGEN_VERSION='grep "#define EIGEN_[^_]*_VERSION" /usr/include/eigen3/Eigen/src/Core/util/Macros.h'
