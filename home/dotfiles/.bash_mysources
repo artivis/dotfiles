@@ -1,0 +1,36 @@
+if [ -f ~/dotfiles/.bash_aliases ]; then
+  source ~/dotfiles/.bash_aliases
+fi
+
+# Export path to custom git commands
+if [ -f ~/dotfiles/.git-config/.git-aliases ]; then
+  export PATH="${HOME}/dotfiles/.git-config/.git-aliases:${PATH}"
+fi
+
+if [ -f ~/dotfiles/bin/source_latest_ros ]; then
+  . ~/dotfiles/bin/source_latest_ros
+fi
+
+if [ -f ~/dotfiles/.bash_ros_aliases ]; then
+  source ~/dotfiles/.bash_ros_aliases
+fi
+
+if [ -f ~/roscorizing/scripts/roscorizing.sh ]; then
+  . ~/roscorizing/scripts/roscorizing.sh
+fi
+
+if [ -f ~/dotfiles/.git_ps1 ]; then
+  source ~/dotfiles/.git_ps1
+fi
+
+if [ -f ~/dotfiles/.bash_prompt ]; then
+  . ~/dotfiles/.bash_prompt
+fi
+
+if [ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ]; then
+  source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+fi
+
+if [ -f "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash" ]; then
+  source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+fi

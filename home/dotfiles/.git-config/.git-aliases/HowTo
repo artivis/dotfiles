@@ -1,0 +1,3 @@
+chmod +x git-diz
+
+export PATH="${HOME}/path/to/backup_conf/.git-aliases:${PATH}"

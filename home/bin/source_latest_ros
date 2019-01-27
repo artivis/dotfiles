@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ROS_DISTROS="melodic lunar kinetic jade indigo hydro"
+
+for w in ${ROS_DISTROS}
+do
+  #echo 'Testing ROS distro '${w}
+  if [ -f /opt/ros/${w}/setup.bash ]; then
+    #echo 'ROS distro '${w} 'exists. Sourcing it.'
+    source /opt/ros/${w}/setup.bash
+    break
+  fi
+done

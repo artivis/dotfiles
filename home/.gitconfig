@@ -1,0 +1,54 @@
+[user]
+
+    # git config --global user.name "Mona Lisa"
+    # git config --global user.email "email@example.com"
+
+    name  = artivis
+    email = deray.jeremie@gmail.com
+
+[core]
+
+    excludesfile = ~/dotfiles/.gitignore_global
+
+    # git version 2.9+
+    hooksPath = ~/dotfiles/.git-config/.git-hooks/
+
+    autocrlf = input
+
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    filemode = false
+
+    editor = 'vi'
+
+[color]
+
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+
+    whitespace = red reverse
+
+[credential]
+
+	helper = cache --timeout=300
+
+[push]
+
+	default = current
+
+[branch]
+
+	autosetuprebase = always
+
+[pretty]
+
+	greenspaced = format: %Cgreen%h%Creset %s%Cred%d%Creset%n
+
+[include]
+
+    path = ~/dotfiles/.git-config/.git-aliases/.gitaliases
+
+[diff]
+
+    noprefix = true

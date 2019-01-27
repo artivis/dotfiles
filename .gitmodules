@@ -1,0 +1,6 @@
+[submodule "roscorizing"]
+	path = home/roscorizing
+	url = https://github.com/artivis/roscorizing.git
+[submodule ".git-config/.git-hooks"]
+	path = home/dotfile/.git-config/.git-hooks
+	url = https://github.com/artivis/hooks.git

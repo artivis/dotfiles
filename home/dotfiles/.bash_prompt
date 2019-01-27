@@ -1,0 +1,31 @@
+# ~/.bash
+
+# command prompt
+TITLEBAR="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h:\w\a\]"
+
+function prompt_break_line()
+{
+  isGitRepo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
+  if [ ! -z "$ROS_MASTER_URI" ] || [ "$isGitRepo" = "true" ]; then
+    echo -e "
+\b"  # Insert line break in the code together with a backspace (\b) so that it isn't squeezed away
+  fi
+}
+
+function in_docker()
+{
+  if [ -f /.dockerenv ]; then
+    echo "[Docker]"
+  fi
+}
+
+COMMAND_PROMPT='$(in_docker)${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\a\[\033[00m\]${ROS_MASTER_URI#http://}'$GIT_PS1'$(prompt_break_line)\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+PS1=$COMMAND_PROMPT
+case "$TERM" in
+    xterm*|rxvt*)
+        PS1="$TITLEBAR$PS1"
+        ;;
+    *)
+        ;;
+esac

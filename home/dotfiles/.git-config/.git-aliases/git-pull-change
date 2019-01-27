@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $1 ]; then
+  branch="$1"
+else
+  branch="HEAD"
+fi
+
+printf "\n%s%s\n\n" $(git rev-list $branch ^$branch@{1} | wc -l) \ " commits were added by your last update to $branch:" git --no-pager log $branch ^$branch@{1} --online
