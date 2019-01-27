@@ -1,3 +1,11 @@
+if [ -f ~/.homeshick/repos/homeshick/homeshick.sh ]; then
+  source ~/.homeshick/repos/homeshick/homeshick.sh
+fi
+
+if [ -f ~/.homeshick/repos/homeshick/completions/homeshick-completion.bash ]; then
+  source ~/.homeshick/repos/homeshick/completions/homeshick-completion.bash
+fi
+
 if [ -f ~/dotfiles/.bash_aliases ]; then
   source ~/dotfiles/.bash_aliases
 fi
