@@ -1,15 +1,10 @@
 # ~/.bash
 
+# Show only the last N directory names
+# PROMPT_DIRTRIM=5
+
 # command prompt
 TITLEBAR="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h:\w\a\]"
-
-#function prompt_break_line()
-#{
-#  isGitRepo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
-#  if [ ! -z "$ROS_MASTER_URI" ] || [ "$isGitRepo" = "true" ]; then
-#     echo \n # Insert line break in the code together with a backspace (\b) so that it isn't squeezed away
-#  fi
-#}
 
 function in_docker()
 {
@@ -18,13 +13,19 @@ function in_docker()
   fi
 }
 
+#function prompt_break_line()
+#{
+#  isGitRepo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
+#  if [ ! -z "$ROS_MASTER_URI" ] || [ "$isGitRepo" = "true" ]; then
+#     echo -e "\n" # Insert line break in the code together with a backspace (\b) so that it isn't squeezed away
+#  fi
+#}
+
 COMMAND_PROMPT_HEADER='$(in_docker)${ROS_MASTER_URI#http://}'$GIT_PS1
 
-if [ ! -z "$COMMAND_PROMPT_HEADER" ]; then
-  COMMAND_PROMPT_HEADER="$COMMAND_PROMPT_HEADER\n"
-fi
+OPTIONAL_LINE_BREAK_AND_CURRENT_PATH='$(if [ ! -z "$ROS_MASTER_URI" ]; then printf "\n"; printf "\[\033[01;34m\]\w\[\033[00m\]"; else printf "\[\033[01;34m\]\w\[\033[00m\]"; fi)'
 
-COMMAND_PROMPT='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\a\[\033[00m\]'$COMMAND_PROMPT_HEADER'\[\033[01;34m\]\w\[\033[00m\]\$ '
+COMMAND_PROMPT='${debian_chroot:+($debian_chroot)}'$COMMAND_PROMPT_HEADER$OPTIONAL_LINE_BREAK_AND_CURRENT_PATH'\$ '
 
 PS1=$COMMAND_PROMPT
 case "$TERM" in
