@@ -23,7 +23,12 @@ function in_docker()
 
 COMMAND_PROMPT_HEADER='$(in_docker)${ROS_MASTER_URI#http://}'$GIT_PS1
 
-OPTIONAL_LINE_BREAK_AND_CURRENT_PATH='$(if [ ! -z "$ROS_MASTER_URI" ]; then printf "\n"; printf "\[\033[01;34m\]\w\[\033[00m\]"; else printf "\[\033[01;34m\]\w\[\033[00m\]"; fi)'
+OPTIONAL_LINE_BREAK_AND_CURRENT_PATH=\
+'$(if [ ! -z "$ROS_MASTER_URI" ] ||
+      [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ];
+  then printf "\n"; printf "\[\033[01;34m\]\w\[\033[00m\]";
+  else printf "\[\033[01;34m\]\w\[\033[00m\]";
+  fi)'
 
 COMMAND_PROMPT='${debian_chroot:+($debian_chroot)}'$COMMAND_PROMPT_HEADER$OPTIONAL_LINE_BREAK_AND_CURRENT_PATH'\$ '
 
