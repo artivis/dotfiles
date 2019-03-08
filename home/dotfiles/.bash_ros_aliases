@@ -185,5 +185,3 @@ alias republish=ros_republish
 alias tf_tree='rosrun rqt_tf_tree rqt_tf_tree'
 alias rqt_reconfigure='rosrun rqt_reconfigure rqt_reconfigure'
 alias rqt_reconf='rosrun rqt_reconfigure rqt_reconfigure'
-
-alias sws="source devel/setup.bash"
