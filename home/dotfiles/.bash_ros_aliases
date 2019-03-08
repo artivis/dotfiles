@@ -143,6 +143,20 @@ function ros_pkg_version()
   fi
 }
 
+function ros_source_latest()
+{
+  list="melodic lunar kinetic jade indigo"
+
+  for distro in $list; do
+    #echo "/opt/ros/$distro/setup.bash"
+    if [ -f "/opt/ros/$distro/setup.bash" ]; then
+      echo "Sourcing $distro"
+      source /opt/ros/$distro/setup.bash
+      break
+    fi
+  done
+}
+
 alias republish=ros_republish
 alias rqt_reconfigure='rosrun rqt_reconfigure rqt_reconfigure'
 alias sws="source devel/setup.bash"
