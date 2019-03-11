@@ -104,7 +104,11 @@ install(){
 }
 
 alias qt='nohup qtcreator >/dev/null 2>&1 &'
-alias qtcreator='nohup qtcreator >/dev/null 2>&1 &'
+#alias qtcreator='nohup qtcreator >/dev/null 2>&1 &'
+alias qtcreator='export CURRENT_CMAKE_BUILD_DIR="$(catkin locate --workspace $(pwd) --build)";\
+                 source "$(catkin locate --workspace $(pwd) --devel)/setup.bash";\
+                 nohup qtcreator >/dev/null 2>&1 &'
+
 
 function set-git-user()
 {
