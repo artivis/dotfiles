@@ -71,7 +71,7 @@
     empty = "!git commit -am\"[empty] Initial commit\" --allow-empty"
 
     # init with empty commit
-    init-empty = "!f() { git init && git commit -am\"[empty] Initial commit\" --allow-empty; }; f"
+    init-empty = "!f() { git init && git empty; }; f"
 
     # initial readme commit
     readme = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && echo "" >> README.md && git add README.md && git commit -m 'readme.md commit' && cd $A; }; f"
@@ -100,7 +100,7 @@
 
     ignore-mode = config core.filemode false
 
-    open = "!f(){ REPO_URL=$(git config remote.origin.url); gnome-open ${REPO_URL%%.git};}; f"
+    open = "!f(){ REPO_URL=$(git config remote.origin.url); xdg-open ${REPO_URL%%.git};}; f"
 
     dl-ignore-cpp = !(curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/C%2B%2B.gitignore)
 
