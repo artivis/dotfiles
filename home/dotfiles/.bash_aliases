@@ -57,7 +57,7 @@ alias words='wc -w'
 alias lines='wc -l'
 
 # Open file with default application (GNOME)
-#alias go='xdg-open'
+alias go='xdg-open'
 
 counts()
 {
