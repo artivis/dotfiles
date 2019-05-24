@@ -1,0 +1,10 @@
+#!/bin/bash
+
+alias sws2="source install/local_setup.bash"
+
+alias gn2='ros2 node list | grep'
+alias gt2='ros2 topic list | grep'
+alias gs2='ros2 service list | grep'
+alias gp2='rosparam list | grep'
+
+alias gt2hz='ros2 topic hz'

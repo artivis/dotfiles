@@ -1,0 +1,15 @@
+#!/bin/bash
+
+alias ros_version='echo $ROS_DISTRO'
+alias rosv='ros_version'
+
+function sws()
+{
+  if [ -f devel/setup.bash ]; then
+    source devel/setup.bash
+  elif [ -f install/local_setup.bash ]; then
+    source install/local_setup.bash
+  else
+    echo "Not a ROS workspace !"
+  fi
+}

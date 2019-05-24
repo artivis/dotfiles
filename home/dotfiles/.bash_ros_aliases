@@ -1,10 +1,5 @@
 #!/bin/bash
 
-function rosv()
-{
-  echo $ROS_DISTRO
-}
-
 # Show or change $ROS_MASTER_URI localhost port
 function uri_local()
 {
@@ -159,17 +154,13 @@ function ros_source_latest()
 
 alias republish=ros_republish
 alias rqt_reconfigure='rosrun rqt_reconfigure rqt_reconfigure'
-alias sws="source devel/setup.bash"
-
-alias ros_version='echo $ROS_DISTRO'
-alias rosv='ros_version'
 
 alias gn='rosnode list | grep'
 alias gt='rostopic list | grep'
 alias gs='rosservice list | grep'
 alias gp='rosparam list | grep'
 
-alias hz='rostopic hz'
+alias gthz='rostopic hz'
 
 alias catkinmake='catkin_make -j8'
 alias catkinm='catkin_make -j8'

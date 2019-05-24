@@ -1,8 +1,8 @@
 #!/bin/bash
 
-ROS_DISTROS="melodic lunar kinetic jade indigo hydro"
+ROS2_DISTROS="dashing crystal bouncy ardent"
 
-for w in ${ROS_DISTROS}
+for w in ${ROS2_DISTROS}
 do
   #echo 'Testing ROS distro '${w}
   if [ -f /opt/ros/${w}/setup.bash ]; then

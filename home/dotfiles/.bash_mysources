@@ -15,17 +15,12 @@ if [ -f ~/dotfiles/.git-config/.git-aliases ]; then
   export PATH="${HOME}/dotfiles/.git-config/.git-aliases:${PATH}"
 fi
 
-if [ -f ~/dotfiles/bin/source_latest_ros ]; then
-  . ~/dotfiles/bin/source_latest_ros
-fi
+alias gonna_ros='. source_latest_ros_and_aliases'
+alias gonna_ros2='. source_latest_ros2_and_aliases'
 
-if [ -f ~/dotfiles/.bash_ros_aliases ]; then
-  source ~/dotfiles/.bash_ros_aliases
-fi
-
-if [ -f ~/roscorizing/scripts/roscorizing.sh ]; then
-  . ~/roscorizing/scripts/roscorizing.sh
-fi
+#if [ -f ~/roscorizing/scripts/roscorizing.sh ]; then
+#  . ~/roscorizing/scripts/roscorizing.sh
+#fi
 
 if [ -f ~/dotfiles/.git_ps1 ]; then
   source ~/dotfiles/.git_ps1

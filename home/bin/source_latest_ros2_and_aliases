@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source source_latest_ros2
+
+if [ -f ~/dotfiles/.bash_ros_common_aliases ]; then
+  source ~/dotfiles/.bash_ros_common_aliases
+fi
+
+if [ -f ~/dotfiles/.bash_ros2_aliases ]; then
+  source ~/dotfiles/.bash_ros2_aliases
+fi
