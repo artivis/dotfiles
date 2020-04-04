@@ -10,6 +10,10 @@ if [ -f ~/dotfiles/.bash_aliases ]; then
   source ~/dotfiles/.bash_aliases
 fi
 
+if [ -f ~/dotfiles/.bash_pi_aliases ]; then
+  source ~/dotfiles/.bash_pi_aliases
+fi
+
 # Export path to custom git commands
 if [ -f ~/dotfiles/.git-config/.git-aliases ]; then
   export PATH="${HOME}/dotfiles/.git-config/.git-aliases:${PATH}"
@@ -17,6 +21,11 @@ fi
 
 alias gonna_ros='. source_latest_ros_and_aliases'
 alias gonna_ros2='. source_latest_ros2_and_aliases'
+
+# Source colcon autocomplete
+if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then
+  source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+fi
 
 #if [ -f ~/roscorizing/scripts/roscorizing.sh ]; then
 #  . ~/roscorizing/scripts/roscorizing.sh
