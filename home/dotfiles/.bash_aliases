@@ -158,3 +158,19 @@ function repeat()
 }
 
 alias EIGEN_VERSION='grep "#define EIGEN_[^_]*_VERSION" /usr/include/eigen3/Eigen/src/Core/util/Macros.h'
+
+alias dualshock4='ds4drv --emulate-xboxdrv'
+alias ds4='dualshock4'
+
+alias gl='glances'
+alias gtop='glances'
+
+function who-dep-on()
+{
+  if [[ $# < 1 ]]
+  then
+    echo "usage: who-dep-on <package-name>"
+  else
+    apt-cache rdepends $1
+  fi
+}
