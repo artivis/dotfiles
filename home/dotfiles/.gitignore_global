@@ -1,3 +1,6 @@
 *.user
 *~
 *.tags
+
+__pycache__
+*.eggs
