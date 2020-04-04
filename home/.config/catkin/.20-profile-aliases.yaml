@@ -1,5 +1,6 @@
 profile-debug: config --profile debug -x _debug --cmake-args -DCMAKE_BUILD_TYPE=Debug
 profile-release: config --profile release -x _release --cmake-args -DCMAKE_BUILD_TYPE=Release
+profile-reldeb: config --profile reldeb -x _reldeb --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo
 extend-sys: config --profile sys --extend /opt/ros/indigo -x _sys
 extend-overlay: config --profile overlay --extend ~/ros/indigo/install -x _overlay
 profile-uftrace: config --profile uftrace -x _uftrace --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-fno-inline -pg"
