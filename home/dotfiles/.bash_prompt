@@ -6,10 +6,27 @@
 # command prompt
 TITLEBAR="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h:\w\a\]"
 
+# todo doesn't work with recent docker versions
 function in_docker()
 {
   if [ -f /.dockerenv ]; then
-    echo "[Docker]"
+    echo "[Docker] "
+  fi
+}
+
+# the lxd communication sockets are good indicators for lxc guest/host
+# https://lxd.readthedocs.io/en/latest/dev-lxd/
+function in_lxc()
+{
+  if [ -e /dev/lxd/sock ]; then
+    echo "[LXC] ";
+  fi
+}
+
+function ros_distro_h()
+{
+  if [[ ! -z "$ROS_DISTRO" ]]; then
+    echo "{$ROS_DISTRO} ";
   fi
 }
 
@@ -21,7 +38,7 @@ function in_docker()
 #  fi
 #}
 
-COMMAND_PROMPT_HEADER='$(in_docker)${ROS_MASTER_URI#http://}'$GIT_PS1
+COMMAND_PROMPT_HEADER='\[\e[34m\]$(in_docker)$(in_lxc)\[\033[00m\]\[\e[33m\]$(ros_distro_h)\[\033[00m\]${ROS_MASTER_URI#http://}'$GIT_PS1
 
 OPTIONAL_LINE_BREAK_AND_CURRENT_PATH=\
 '$(if [ ! -z "$ROS_MASTER_URI" ] ||
