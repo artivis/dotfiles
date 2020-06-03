@@ -1,6 +1,9 @@
 #!/bin/bash
 
-ROS_DISTROS="melodic lunar kinetic jade indigo hydro"
+# Place this file in ~/bin/.
+# Make it executable : chmod +x ~/bin/source_latest_ros
+
+ROS_DISTROS="noetic melodic lunar kinetic jade indigo hydro"
 
 for w in ${ROS_DISTROS}
 do

@@ -1,10 +1,22 @@
 #!/bin/bash
 
-alias sws2="source install/local_setup.bash"
+alias gn='ros2 node list | grep'
+alias gt='ros2 topic list | grep'
+alias gs='ros2 service list | grep'
+alias gp='ros2 list | grep'
 
-alias gn2='ros2 node list | grep'
-alias gt2='ros2 topic list | grep'
-alias gs2='ros2 service list | grep'
-alias gp2='rosparam list | grep'
+alias gthz='ros2 topic hz'
 
-alias gt2hz='ros2 topic hz'
+function ros_pkg_version()
+{
+  if [[ $# < 1 ]]
+  then
+    if [ -f package.xml ]; then
+      cat package.xml | grep version
+    else
+      echo "Missing package.xml"
+    fi
+  else
+    ros2 pkg xml version
+  fi
+}

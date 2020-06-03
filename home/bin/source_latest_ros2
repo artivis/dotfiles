@@ -1,6 +1,9 @@
 #!/bin/bash
 
-ROS2_DISTROS="dashing crystal bouncy ardent"
+# Place this file in ~/bin/.
+# Make it executable : chmod +x ~/bin/source_latest_ros2
+
+ROS2_DISTROS="foxy eloquent dashing crystal bouncy ardent"
 
 for w in ${ROS2_DISTROS}
 do

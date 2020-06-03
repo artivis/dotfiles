@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source_latest_ros
+source source_latest_ros
 
 if [ -f ~/dotfiles/.bash_ros_common_aliases ]; then
   source ~/dotfiles/.bash_ros_common_aliases

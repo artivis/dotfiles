@@ -1,6 +1,22 @@
 #!/bin/bash
 
-alias ros_version='echo $ROS_DISTRO'
+if [ -z "${ROS_VERSION}" ]; then
+  echo "ROS is not sourced. Aliases not set."
+  exit 0
+elif [ ${ROS_VERSION} == "1" ]; then
+  if [ -f ~/dotfiles/.bash_ros_aliases ]; then
+    source ~/dotfiles/.bash_ros_aliases
+  fi
+elif [ ${ROS_VERSION} == "2" ]; then
+  if [ -f ~/dotfiles/.bash_ros2_aliases ]; then
+    source ~/dotfiles/.bash_ros2_aliases
+  fi
+fi
+
+alias ros_distro='echo $ROS_DISTRO'
+alias rosd='ros_distro'
+
+alias ros_version='echo $ROS_VERSION'
 alias rosv='ros_version'
 
 function sws()

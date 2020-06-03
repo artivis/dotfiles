@@ -132,24 +132,14 @@ function ros_pkg_version()
 {
   if [[ $# < 1 ]]
   then
-    cat package.xml | grep version
+    if [ -f package.xml ]; then
+      cat package.xml | grep version
+    else
+      echo "Missing package.xml"
+    fi
   else
     cat $(rospack find ${1})/package.xml | grep version
   fi
-}
-
-function ros_source_latest()
-{
-  list="melodic lunar kinetic jade indigo"
-
-  for distro in $list; do
-    #echo "/opt/ros/$distro/setup.bash"
-    if [ -f "/opt/ros/$distro/setup.bash" ]; then
-      echo "Sourcing $distro"
-      source /opt/ros/$distro/setup.bash
-      break
-    fi
-  done
 }
 
 alias republish=ros_republish
