@@ -1,10 +1,14 @@
-if [ -f ~/.homeshick/repos/homeshick/homeshick.sh ]; then
-  source ~/.homeshick/repos/homeshick/homeshick.sh
+# Homeshick
+
+if [ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ]; then
+  source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fi
 
-if [ -f ~/.homeshick/repos/homeshick/completions/homeshick-completion.bash ]; then
-  source ~/.homeshick/repos/homeshick/completions/homeshick-completion.bash
+if [ -f "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash" ]; then
+  source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 fi
+
+# dotfiles
 
 if [ -f ~/dotfiles/.bash_aliases ]; then
   source ~/dotfiles/.bash_aliases
@@ -19,18 +23,6 @@ if [ -f ~/dotfiles/.git-config/.git-aliases ]; then
   export PATH="${HOME}/dotfiles/.git-config/.git-aliases:${PATH}"
 fi
 
-alias gonna_ros='. source_latest_ros_and_aliases'
-alias gonna_ros2='. source_latest_ros2_and_aliases'
-
-# Source colcon autocomplete
-if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then
-  source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
-fi
-
-#if [ -f ~/roscorizing/scripts/roscorizing.sh ]; then
-#  . ~/roscorizing/scripts/roscorizing.sh
-#fi
-
 if [ -f ~/dotfiles/.git_ps1 ]; then
   source ~/dotfiles/.git_ps1
 fi
@@ -39,10 +31,23 @@ if [ -f ~/dotfiles/.bash_prompt ]; then
   . ~/dotfiles/.bash_prompt
 fi
 
-if [ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ]; then
-  source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+# ROS stuff
+
+# Source colcon autocomplete
+if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then
+  source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 fi
 
-if [ -f "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash" ]; then
-  source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+if [ -f /usr/share/vcstool-completion/vcs.bash ]; then
+  . /usr/share/vcstool-completion/vcs.bash
 fi
+
+#if [ -f ~/roscorizing/scripts/roscorizing.sh ]; then
+#  . ~/roscorizing/scripts/roscorizing.sh
+#fi
+
+alias gonna_ros='. source_latest_ros_and_aliases'
+alias gros='gonna_ros'
+
+alias gonna_ros2='. source_latest_ros2_and_aliases'
+alias gros2='gonna_ros2'
