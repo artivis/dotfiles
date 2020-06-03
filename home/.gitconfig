@@ -52,3 +52,4 @@
 [diff]
 
     noprefix = true
+	tool = meld
